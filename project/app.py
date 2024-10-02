@@ -32,6 +32,10 @@ app.config.from_object(__name__)
 # init sqlalchemy
 db = SQLAlchemy(app)
 
+@app.before_request
+def before_request_function():
+    db.create_all()
+
 from project import models
 
 def login_required(f):
